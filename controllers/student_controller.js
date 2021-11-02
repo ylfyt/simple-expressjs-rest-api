@@ -1,8 +1,8 @@
-import Student from "../models/Student.js";
+import Students from "../models/Student.js";
 
 export const getStudent = async (req, res) => {
     try {
-        const students = await Student.find();
+        const students = await Students.find();
         res.json(students);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -12,7 +12,7 @@ export const getStudent = async (req, res) => {
 export const getStudentByNim = async (req, res) => {
     const nim = req.params.nim;
     try {
-        const student = await Student.findOne({nim: nim});
+        const student = await Students.findOne({nim: nim});
         if (student){
             res.json(student);
         }
@@ -32,7 +32,7 @@ export const insertStudent = async (req, res) => {
     };
 
     try {
-        const newStudent = new Student(student);
+        const newStudent = new Students(student);
         const savedStudent = await newStudent.save();
         res.status(200).json(savedStudent);
     } catch (err) {
@@ -44,7 +44,7 @@ export const deleteStudent = async (req, res) => {
     const nim = req.params.nim;
 
     try { 
-        const removedStudent = await Student.findOneAndRemove({nim: nim});
+        const removedStudent = await Students.findOneAndRemove({nim: nim});
         if (removedStudent){
             res.json(removedStudent);
         }
@@ -52,6 +52,25 @@ export const deleteStudent = async (req, res) => {
             res.status(404).json({error: "Student not found"});
         }
     } catch (error) {
-        res.json({error: error.message});
+        res.status(400).json({error: error.message});
     }
+};
+
+export const updateStudent = async (req, res) => {
+    const nim = req.params.nim;
+
+    try {
+        const newData = {
+            name: req.body.name, 
+            email: req.body.email
+        };
+        const updatedStudent = await Students.updateOne(
+            {nim:nim}, 
+            { $set: newData }
+        );
+        res.json(updatedStudent);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+
 };
