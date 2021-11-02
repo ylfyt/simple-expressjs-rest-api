@@ -1,8 +1,7 @@
 import Express from 'express';
 import dotenv from  'dotenv';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import studentRouter from './routes/students.js';
+import studentRouter from './routes/students_router.js';
 
 dotenv.config();
 
