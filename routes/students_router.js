@@ -5,8 +5,8 @@ import { getStudent, getStudentByNim, insertStudent, deleteStudent, updateStuden
 const router = Express.Router();
 
 router.get('/', getStudent);
-router.get('/:nim', getStudentByNim);
 router.post('/', insertStudent);
+router.get('/:nim', getStudentByNim);
 router.delete('/:nim', deleteStudent);
 router.put('/:nim', updateStudent);
 

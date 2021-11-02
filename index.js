@@ -1,6 +1,7 @@
 import Express from 'express';
 import dotenv from  'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import studentRouter from './routes/students_router.js';
 
 dotenv.config();
@@ -10,6 +11,7 @@ const app = Express();
 
 // Middleware
 app.use(Express.json());
+app.use(cors());
 
 // Router
 app.use('/students', studentRouter);
