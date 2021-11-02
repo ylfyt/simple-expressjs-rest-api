@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 import studentRouter from './routes/students_router.js';
 
 dotenv.config();
+const PORT = process.env.PORT || 3000;
 
 const app = Express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(Express.json());
@@ -21,14 +21,12 @@ app.get('/', (req, res) => {
     res.json(data);
 });
 
-
-mongoose.connect(process.env.DB_CONNECT, () => {
-    console.log('DB is Connected!');
-});
-app.listen(
-    PORT, 
+// DB Connection
+mongoose.connect(
+    process.env.DB_CONNECT, 
     {useNewUrlParse: true}, 
-    () => console.log('Listening on port ' + PORT)
+    () => console.log('DB is Connected!')
 );
+app.listen(PORT, () => console.log('Listening on port ' + PORT));
 
 
