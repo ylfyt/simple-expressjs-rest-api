@@ -3,6 +3,7 @@ import dotenv from  'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import studentRouter from './routes/students_router.js';
+import userRouter from './routes/users_router.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -14,7 +15,8 @@ app.use(Express.json());
 app.use(cors());
 
 // Router
-app.use('/students', studentRouter);
+app.use('/api/students', studentRouter);
+app.use('/api/users', userRouter);
 
 app.get('/', (req, res) => {
 
