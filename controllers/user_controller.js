@@ -1,5 +1,6 @@
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import Users from '../models/User.js';
 
 const schema = Joi.object({
@@ -19,9 +20,13 @@ export const register = async (req, res) => {
 			return res.status(400).json({ error: 'User is already exist' });
 		}
 
-		const newUser = new Users({ username: req.body.username, password: req.body.password });
+		// Hashing the password
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+		const newUser = new Users({ username: req.body.username, password: hashedPassword });
 		const savedUser = await newUser.save();
-		return res.json(savedUser);
+		return res.json({ id: savedUser.id, username: savedUser.username });
 	} catch (error) {
 		return res.status(400).json({ error: error.message });
 	}
@@ -38,8 +43,8 @@ export const login = async (req, res) => {
 		if (!userExist) {
 			return res.status(400).json({ erorr: 'Username or password is wrong' });
 		}
-
-		if (userExist.password != req.body.password) {
+		const valid = bcrypt.compareSync(req.body.password, userExist.password);
+		if (!valid) {
 			return res.status(400).json({ erorr: 'Username or password is wrong' });
 		}
 
