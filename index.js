@@ -2,6 +2,8 @@ import Express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
+
+// Import Router
 import studentRouter from './routes/students_router.js';
 import userRouter from './routes/users_router.js';
 import postsRouter from './routes/posts_router.js';
@@ -17,13 +19,11 @@ app.use(cors());
 
 // Router
 app.use('/api/students', studentRouter);
-app.use('/api/users', userRouter);
 app.use('/api/posts', postsRouter);
+app.use('/api/users', userRouter);
 
 app.get('/', (req, res) => {
-	let data = { id: 1, name: 'Yudi Alfayat' };
-
-	res.json(data);
+	res.send('<h1>Hello, World</h1>');
 });
 
 // DB Connection
