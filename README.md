@@ -4,10 +4,10 @@
 
 -   Download repo ini
 -   Jalankan command 'npm install'
--   Buat file '.env' dengan isinya adalah sebagai berikut
+-   Buat file '.env' pada folder repo dengan isinya adalah sebagai berikut,
     -   'DB_CONNECT=<url_mongodb_connection>'
     -   'TOKEN_SECRET=<random_string>'
-    -   'PORT=<port-yang-ingin-digunakan>'
+    -   'PORT=<port-yang-digunakan>'
 -   Jalankan command 'npm start' dan server akan dimulai
 
 ### Routing URL
