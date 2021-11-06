@@ -7,7 +7,7 @@
 -   Buat file '.env' pada folder repo dengan isinya adalah sebagai berikut,
     -   'DB_CONNECT=<url_mongodb_connection>'
     -   'TOKEN_SECRET=<random_string>'
-    -   'PORT=<port-yang-digunakan>'
+    -   'PORT=3333'
 -   Jalankan command 'npm start' dan server akan dimulai
 
 ### Routing URL
