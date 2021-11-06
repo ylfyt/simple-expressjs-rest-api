@@ -1,7 +1,13 @@
 # Simple Rest API using Nodejs & Expressjs
 
-### Tech
-- Node js
-- Express js
-- Mongodb
-- Json Web Token
+### Cara menggunakan
+
+-   Download repo ini
+-   Jalankan command 'npm install'
+
+### Teknologi
+
+-   Node js
+-   Express js
+-   Mongodb
+-   Json Web Token
