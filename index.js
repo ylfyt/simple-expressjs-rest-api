@@ -7,6 +7,7 @@ import cors from 'cors';
 import studentRouter from './routes/students_router.js';
 import userRouter from './routes/users_router.js';
 import postsRouter from './routes/posts_router.js';
+import { verify } from './routes/verifyToken.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +19,7 @@ app.use(Express.json());
 app.use(cors());
 
 // Router
-app.use('/api/students', studentRouter);
+app.use('/api/students', verify, studentRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/users', userRouter);
 
